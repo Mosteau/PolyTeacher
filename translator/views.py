@@ -37,3 +37,17 @@ class FrenchEnglishTranslationViewSet(APIView):
 
 def index(request):
     return render(request, 'index.html', context={})
+
+
+def contact(request):
+    return render(request, 'contact.html', context={})
+
+# afficher toutes les traductions API
+class AllTranslation(APIView):   
+    def get(self, request):
+# sélectionne toutes les traductions aved la méthode all
+        data = Translation.objects.all()
+# formater les données en JSON avec le serializer
+        serializer_data = TranslationSerializer(data, many=True)
+# renvoie les données sérialisées,afficher sous forme de réponse JSON
+        return Response(serializer_data.data)
