@@ -8,5 +8,5 @@ genai.configure(api_key=api_key)
 
 # génération de texte
 model = genai.GenerativeModel("gemini-1.5-flash")
-response = model.generate_content("Comment on dit oiseau en anglais ?")
+response = model.generate_content("Comment on dit manger en anglais ?")
 print(response.text)

@@ -9,8 +9,16 @@ from translator.serializers import TranslationSerializer
 
 class FrenchSpanishTranslationViewSet(APIView):
 
-    def get(self, request):
-        return Response(data={}, status=None)
+    def get(self, request, response):
+        import google.generativeai as genai
+
+        api_key="AIzaSyA3Kc_hY3CT2pE_QImhIfBfRrf9kvNJlCA"
+        genai.configure(api_key=api_key)
+
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        response = model.generate_content("Je suis dev IA ? je veux la traduction en espagn")
+
+        return Response(data={"result": response.text}, status=status.HTTP_200_OK)
     
     def post(self, request):
         return Response(data={}, status=None)
